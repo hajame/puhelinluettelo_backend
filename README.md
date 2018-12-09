@@ -1,5 +1,5 @@
 # Puhelinluettelo Node Backend
-A web backend exercise for Full Stack MOOC 2018-19
+A web app exercise built with REACT and Node.js for Full Stack MOOC 2018-19
 
 ## Puhelinluettelo in Heroku
 
