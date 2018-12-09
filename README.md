@@ -1,6 +1,9 @@
 # Puhelinluettelo Node Backend
 A web backend exercise for Full Stack MOOC 2018-19
 
+## Backend in Heroku
+
+https://puh-backend.herokuapp.com/
 
 ## Notes for examiner:
 - Repositorio on siirretty omaan repoonsa tehtävän 3.8 tekemisen jälkeen

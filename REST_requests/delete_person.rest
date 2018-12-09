@@ -1,1 +1,2 @@
-DELETE http://localhost:3001/api/persons/4
+DELETE https://puh-backend.herokuapp.com/api/persons/1669
+# DELETE http://localhost:3001/api/persons/4
