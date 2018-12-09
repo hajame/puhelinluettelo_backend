@@ -1,7 +1,7 @@
 # Puhelinluettelo Node Backend
 A web backend exercise for Full Stack MOOC 2018-19
 
-## Backend in Heroku
+## Puhelinluettelo in Heroku
 
 https://puh-backend.herokuapp.com/
 
