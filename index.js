@@ -65,21 +65,29 @@ app.get('/info', (req, res) => {
 
 app.get('/api/persons', (req, res) => {
     Person
-      .find({})
-      .then(people => {
-          res.json(people.map(formatPerson))
+        .find({})
+        .then(people => {
+            res.json(people.map(formatPerson))
+        })
+        .catch(error => {
+            console.log(error)
         })
 })
 
 app.get('/api/persons/:id', (request, response) => {
-    const id = Number(request.params.id)
-    const person = persons.find(pers => pers.id === id)
-    if (person) {
-        response.json(person)
-    } else {
-        response.status(404).send(`<h2>So, So Sorry...</h2>
-            <p>404: person with id ${id} not found</p>`).end()
-    }
+    Person
+        .findById(request.params.id)
+        .then(person => {
+            if (person) {
+                response.json(formatPerson(person))
+            } else {
+                response.status(404).end()
+            }
+        })
+        .catch(error => {
+            console.log(error)
+            response.status(400).send({ error: 'malformatted id' })
+        })
 })
 
 const generateId = () => {
@@ -97,7 +105,7 @@ app.post('/api/persons', (request, response) => {
         return response.status(400).json({ error: 'name must be unique' })
     }
 
-    const person = new Person ({
+    const person = new Person({
         name: body.name,
         number: body.number
     })
@@ -107,13 +115,25 @@ app.post('/api/persons', (request, response) => {
         .then(savedPerson => {
             response.json(formatPerson(savedPerson))
         })
+        .catch(error => {
+            console.log(error)
+        })
 })
 
 app.delete('/api/persons/:id', (request, response) => {
-    const id = Number(request.params.id)
-    persons = persons.filter(pers => pers.id !== id)
+    // const id = Number(request.params.id)
+    // persons = persons.filter(pers => pers.id !== id)
 
-    response.status(204).end()
+    // response.status(204).end()
+    Person
+        .findByIdAndDelete(request.params.id)
+        .then(result => {
+            response.status(204).end()
+        })
+        .catch(error => {
+            response.status(400).send({ error: 'malformatted id' })
+        })
+
 })
 
 const PORT = process.env.PORT || 3001

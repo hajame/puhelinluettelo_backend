@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 // korvaa url oman tietokantasi urlilla. ethän laita salasanaa Githubiin!
-const url = 'mongodb://<usr>:<pass>@ds133260.mlab.com:33260/fullstack-puhelinkirja'
+const url = 'mongodb://user:paaaas@ds133260.mlab.com:33260/fullstack-puhelinkirja'
 
 mongoose.connect(url, { useNewUrlParser: true })
 
