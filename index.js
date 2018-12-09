@@ -136,6 +136,21 @@ app.delete('/api/persons/:id', (request, response) => {
 
 })
 
+app.put('/api/persons/:id', (request, response) => {
+    const body = request.body
+
+    const person = {
+        name: body.name,
+        number: body.number
+    }
+
+    Person
+        .findOneAndUpdate({ _id: request.params.id }, person, {new: true})
+        .then(updatedPerson => {
+            response.json(formatPerson(updatedPerson))
+        })
+})
+
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
