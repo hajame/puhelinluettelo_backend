@@ -60,7 +60,10 @@ app.get('/api/persons', (req, res) => {
     Person
         .find({})
         .then(people => {
-            res.json(people.map(person => Person.format(person)))
+            return people.map(Person.format)
+        })
+        .then(formattedPeople => {
+            res.json(formattedPeople)
         })
         .catch(error => {
             console.log(error)
@@ -84,25 +87,30 @@ app.get('/api/persons/:id', (request, response) => {
 })
 
 app.post('/api/persons', (request, response) => {
-    const body = request.body
-    if (body.name === undefined || body.number === undefined) {
+    const body = request.body   
+    if (!body.name || !body.number) {
         return response.status(400).json({ error: 'name or number missing' })
-    } else if (persons.map(pers => pers.name).includes(body.name)) {
-        return response.status(400).json({ error: 'name must be unique' })
     }
-
-    const person = new Person({
-        name: body.name,
-        number: body.number
-    })
-
-    person
-        .save()
-        .then(savedPerson => {
-            response.json(formatPerson(savedPerson))
-        })
-        .catch(error => {
-            console.log(error)
+    Person.find({ name: body.name})
+        .then(foundPerson => {
+            console.log('foundPerson', foundPerson) 
+            if (foundPerson.length !== 0) {
+                return response.status(400).json({ error: 'name must be unique' }).end()
+            } else {
+                const person = new Person({
+                    name: body.name,
+                    number: body.number
+                })
+                person
+                    .save()
+                    .then(Person.format)
+                    .then(savedAndFormattedPerson => {
+                        response.json(savedAndFormattedPerson)
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })   
+            }
         })
 })
 

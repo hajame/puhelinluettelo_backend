@@ -1,8 +1,8 @@
-POST https://puh-backend.herokuapp.com/api/persons
-# POST http://localhost:3001/api/persons
+# POST https://puh-backend.herokuapp.com/api/persons
+ POST http://localhost:3001/api/persons
 content-type: application/json
 
 {
-    "name": "Eric Henryson",
-    "number": "050-123456"
+    "name": "Henkilo",
+    "number": "000000"
 }
