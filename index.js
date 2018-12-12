@@ -82,13 +82,6 @@ app.get('/api/persons/:id', (request, response) => {
         })
 })
 
-const generateId = () => {
-    // const maxId = persons.length > 0 ? persons.map(p => p.id)
-    //     .sort((a, b) => a - b).reverse()[0] : 1
-    // return maxId + 1
-    return Math.floor(Math.random() * 10000) + 1
-}
-
 app.post('/api/persons', (request, response) => {
     const body = request.body
     if (body.name === undefined || body.number === undefined) {
