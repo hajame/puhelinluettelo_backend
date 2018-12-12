@@ -141,7 +141,7 @@ app.put('/api/persons/:id', (request, response) => {
     Person
         .findOneAndUpdate({ _id: request.params.id }, person, {new: true})
         .then(updatedPerson => {
-            response.json(formatPerson(updatedPerson))
+            response.json(Person.format(updatedPerson))
         })
 })
 

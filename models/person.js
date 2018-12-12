@@ -1,9 +1,10 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-// korvaa url oman tietokantasi urlilla. ethän laita salasanaa Githubiin!
+if ( process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 const url = process.env.MONGODB_URI
-// const url = 'mongodb://user:pass@ds133260.mlab.com:33260/fullstack-puhelinkirja'
 
 mongoose.connect(url, { useNewUrlParser: true })
 
