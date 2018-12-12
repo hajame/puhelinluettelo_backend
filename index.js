@@ -49,10 +49,11 @@ let persons = [
 ]
 
 app.get('/info', (req, res) => {
-    res.send(`
-    <p>puhelinluettelossa ${persons.length} henkilön tiedot</p>
-    <p>${new Date()}</p>
-    `)
+    Person.find({})
+        .then( people => {
+            res.send(`<p>puhelinluettelossa ${people.length} henkilön tiedot</p>
+            <p>${new Date()}</p>`)
+        })
 })
 
 app.get('/api/persons', (req, res) => {
@@ -71,7 +72,7 @@ app.get('/api/persons/:id', (request, response) => {
         .findById(request.params.id)
         .then(person => {
             if (person) {
-                response.json(formatPerson(person))
+                response.json(Person.format(person))
             } else {
                 response.status(404).end()
             }

@@ -1,0 +1,2 @@
+# GET https://puh-backend.herokuapp.com/api/persons/5c0d5d5b7804fb2f06ed93ac
+GET http://localhost:3001/api/persons/5c0d5d5b7804fb2f06ed93ac
