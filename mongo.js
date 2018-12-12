@@ -11,25 +11,25 @@ const Person = mongoose.model('Person', {
 })
 
 if (process.argv[2] !== undefined && process.argv[3] !== undefined) {
-    const person = new Person({
-      name: process.argv[2],
-      number: process.argv[3],
+  const person = new Person({
+    name: process.argv[2],
+    number: process.argv[3],
+  })
+
+  person
+    .save()
+    .then(result => {
+      console.log(`lisätään henkilö ${result.name} numero ${result.number} luetteloon!`)
+      mongoose.connection.close()
     })
-    
-    person
-      .save()
-      .then(result => {
-        console.log(`lisätään henkilö ${result.name} numero ${result.number} luetteloon!`)
-        mongoose.connection.close()
-      })
 } else {
-    console.log('puhelinluettelo:')
-    Person
-      .find({})
-      .then(result => {
-        result.forEach(person => {
-          console.log(person.name + " " + person.number)
-        })
-        mongoose.connection.close()
+  console.log('puhelinluettelo:')
+  Person
+    .find({})
+    .then(result => {
+      result.forEach(person => {
+        console.log(person.name + " " + person.number)
       })
+      mongoose.connection.close()
+    })
 }
