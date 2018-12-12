@@ -48,14 +48,6 @@ let persons = [
     }
 ]
 
-const formatPerson = (person) => {
-    return {
-        name: person.name,
-        number: person.number,
-        id: person._id
-    }
-}
-
 app.get('/info', (req, res) => {
     res.send(`
     <p>puhelinluettelossa ${persons.length} henkilön tiedot</p>
