@@ -48,6 +48,14 @@ let persons = [
     }
 ]
 
+const formatPerson = (person) => {
+    return {
+        name: person.name,
+        number: person.number,
+        id: person._id
+    }
+}
+
 app.get('/info', (req, res) => {
     res.send(`
     <p>puhelinluettelossa ${persons.length} henkilön tiedot</p>
@@ -59,7 +67,7 @@ app.get('/api/persons', (req, res) => {
     Person
         .find({})
         .then(people => {
-            res.json(people.map(Person.format))
+            res.json(people.map(person => Person.format(person)))
         })
         .catch(error => {
             console.log(error)
