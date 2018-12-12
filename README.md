@@ -3,7 +3,7 @@ A web app exercise built with REACT and Node.js for Full Stack MOOC 2018-19
 
 ## Puhelinluettelo in Heroku
 
-https://puh-backend.herokuapp.com/
+https://puh-luettelo-hajame.herokuapp.com/
 
 ## Notes for examiner:
 - Repositorio on siirretty omaan repoonsa tehtävän 3.8 tekemisen jälkeen
