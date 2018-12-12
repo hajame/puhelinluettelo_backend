@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 // korvaa url oman tietokantasi urlilla. ethän laita salasanaa Githubiin!
-const url = 'mongodb://user:pass@ds133260.mlab.com:33260/fullstack-puhelinkirja'
+const url = 'mongodb://harri:numeroita11@ds133260.mlab.com:33260/fullstack-puhelinkirja'
 
 mongoose.connect(url, { useNewUrlParser: true })
 
